@@ -3,6 +3,8 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.bson.Document;
 public class Register extends javax.swing.JFrame {
@@ -10,8 +12,17 @@ public class Register extends javax.swing.JFrame {
     /**
      * Creates new form Register
      */
+    Object[] options = {"Login"};
+    JFrame frames = new JFrame("src/Image/metal-info.png");
+    
     public Register() {
         initComponents();
+        usernamefield.setText("");
+        pwdfield.setText("");
+        cfpwdfield.setText("");
+        nicknamefield.setText("");
+        setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -37,37 +48,49 @@ public class Register extends javax.swing.JFrame {
         cfpwdfield = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("                                                                                                      Oxgame");
+        setMinimumSize(new java.awt.Dimension(724, 452));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         usernamefield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usernamefieldActionPerformed(evt);
             }
         });
+        getContentPane().add(usernamefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 190, 30));
 
+        clearbtn.setBackground(new java.awt.Color(255, 51, 51));
         clearbtn.setText("Clear");
         clearbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearbtnActionPerformed(evt);
             }
         });
+        getContentPane().add(clearbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 80, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel5.setText("ConfirmPassword : ");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("Nickname :");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Register");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, -1, -1));
 
         nicknamefield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nicknamefieldActionPerformed(evt);
             }
         });
+        getContentPane().add(nicknamefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 190, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Username   : ");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
+        getContentPane().add(pwdfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, 190, 30));
 
         backbtn.setText("Back");
         backbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -75,91 +98,24 @@ public class Register extends javax.swing.JFrame {
                 backbtnActionPerformed(evt);
             }
         });
+        getContentPane().add(backbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Password    : ");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, -1));
 
+        registerbtn.setBackground(new java.awt.Color(51, 255, 0));
         registerbtn.setText("Register");
         registerbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registerbtnActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 724, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(220, 220, 220)
-                            .addComponent(jLabel1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(60, 60, 60)
-                            .addComponent(jLabel3)
-                            .addGap(22, 22, 22)
-                            .addComponent(usernamefield, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(60, 60, 60)
-                            .addComponent(jLabel4)
-                            .addGap(21, 21, 21)
-                            .addComponent(pwdfield, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addGap(23, 23, 23)
-                            .addComponent(cfpwdfield, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(70, 70, 70)
-                            .addComponent(jLabel2)
-                            .addGap(41, 41, 41)
-                            .addComponent(nicknamefield, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(170, 170, 170)
-                            .addComponent(registerbtn)
-                            .addGap(47, 47, 47)
-                            .addComponent(clearbtn))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(30, 30, 30)
-                            .addComponent(backbtn)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 452, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addGap(31, 31, 31)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel3)
-                        .addComponent(usernamefield, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(20, 20, 20)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4)
-                        .addComponent(pwdfield, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(20, 20, 20)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel5)
-                        .addComponent(cfpwdfield, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(20, 20, 20)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2)
-                        .addComponent(nicknamefield, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(30, 30, 30)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(registerbtn)
-                        .addComponent(clearbtn))
-                    .addGap(17, 17, 17)
-                    .addComponent(backbtn)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        getContentPane().add(registerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 90, 30));
+        getContentPane().add(cfpwdfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 190, 30));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void usernamefieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernamefieldActionPerformed
@@ -186,21 +142,22 @@ public class Register extends javax.swing.JFrame {
         RegisterDB regis = new RegisterDB();
         if(checkFieldnotnull() == false){
             if(regis.checkUserExists(usernamefield.getText())){
-                JOptionPane.showMessageDialog(null, "Username นี้มีผู้ใช้แล้วกรุณากรอกใหม่");
+                JOptionPane.showMessageDialog(null, "Username นี้มีผู้ใช้แล้วกรุณากรอกใหม่","Register Error",JOptionPane.ERROR_MESSAGE);
                 usernamefield.setText("");
             }
             if(nicknamefield.getText().length()<3||checkpwdandcfpwd()==false){
-                JOptionPane.showMessageDialog(null, "กรุณาตั้ง Nicknameอย่างน้อย3ตัวอักษรและ กรุณาตรวจสอบPassword ให้ตรงกันและใส่อย่างน้อย6ตัว!");
+                JOptionPane.showMessageDialog(null, "กรุณาตั้ง Nicknameอย่างน้อย3ตัวอักษรและ กรุณาตรวจสอบPassword ให้ตรงกันและใส่อย่างน้อย6ตัว!","Register Error",JOptionPane.ERROR_MESSAGE);
                 nicknamefield.setText("");
                 cfpwdfield.setText("");
             }
-
-            else{
+            else if(!regis.checkUserExists(usernamefield.getText())){
                 regis.addUser(usernamefield.getText(), pwdfield.getText(), nicknamefield.getText());
-                int input = JOptionPane.showConfirmDialog(null, "Welcome, " + nicknamefield.getText());
+                int input = JOptionPane.showOptionDialog(frames, "Welcome, " + getnickname(),"Register Success",
+                            JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
                 if(input == 0){
-                    Register re = new Register();
-                    re.dispose();
+                    Login log = new Login();
+                    visible();
+                    log.setVisible(true);
                 }
 
             }
@@ -230,6 +187,13 @@ public class Register extends javax.swing.JFrame {
     public String tostring(){
         return pwdfield.getText();
     } 
+    String getnickname(){
+        String a = nicknamefield.getText();
+        return a;
+    }
+    void visible(){
+        dispose();
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
