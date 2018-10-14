@@ -28,18 +28,24 @@ public class test extends JFrame{
     public static void main(String[] args) {
         Object[] options = {"Login"};
         //ImageIcon icon = new ImageIcon(test.class.getResource("/metal-info.png"));
-        JFrame frame = new JFrame("src/Image/metal-info.png");
+       /* JFrame frame = new JFrame("src/Image/metal-info.png");
         ImageIcon icon1 = new ImageIcon("D:\\Netbean\\OXProjects\\src\\Image\\metal-info.png");
         ImageIcon icon = new ImageIcon("src/Image/metal-info.png");
-        JPanel panel = new JPanel();
+        JPanel panel = new JPanel();*/
         String a = "nut";
         /*int i = JOptionPane.showConfirmDialog(null, 
                 "Click ok if you are ok Be ok! " + a,"login" ,JOptionPane.DEFAULT_OPTION);*/
         /*int j = JOptionPane.showOptionDialog(new OptionDialogInFrame(), "Welcome, " + a,"Register Success",
                         JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,null,options,options[0]);*/
-        int input = JOptionPane.showConfirmDialog(new test(), 
+       /* int input = JOptionPane.showConfirmDialog(new test(), 
                 "I appear as part of the frame!!", "Customized Dialog", 
-                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, icon);
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, icon);*/
+       ImageIcon icon = new ImageIcon("src/Image/metal-info.png");
+	int input = JOptionPane.showConfirmDialog(null, "Do you like turtles?", "Be honest...",
+			JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+
+        // 0=yes, 1=no, 2=cancel
+	System.out.println(input);
         
         
     }

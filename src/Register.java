@@ -3,10 +3,15 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.bson.Document;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 public class Register extends javax.swing.JFrame {
 
     /**
@@ -46,10 +51,11 @@ public class Register extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         registerbtn = new javax.swing.JButton();
         cfpwdfield = new javax.swing.JPasswordField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("                                                                                                      Oxgame");
-        setMinimumSize(new java.awt.Dimension(724, 452));
+        setTitle("                                                                                      Oxgame");
+        setMinimumSize(new java.awt.Dimension(605, 428));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         usernamefield.addActionListener(new java.awt.event.ActionListener() {
@@ -57,62 +63,83 @@ public class Register extends javax.swing.JFrame {
                 usernamefieldActionPerformed(evt);
             }
         });
-        getContentPane().add(usernamefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 190, 30));
+        getContentPane().add(usernamefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 190, 30));
 
-        clearbtn.setBackground(new java.awt.Color(255, 51, 51));
+        clearbtn.setBackground(new java.awt.Color(255, 255, 255));
         clearbtn.setText("Clear");
         clearbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearbtnActionPerformed(evt);
             }
         });
-        getContentPane().add(clearbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 80, 30));
+        getContentPane().add(clearbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, 80, 30));
 
+        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel5.setText("ConfirmPassword : ");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
 
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("Nickname :");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, -1, -1));
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Register");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, -1, -1));
 
         nicknamefield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nicknamefieldActionPerformed(evt);
             }
         });
-        getContentPane().add(nicknamefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 190, 30));
+        getContentPane().add(nicknamefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, 190, 30));
 
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Username   : ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
-        getContentPane().add(pwdfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, 190, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, -1, -1));
+        getContentPane().add(pwdfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 190, 30));
 
+        backbtn.setBackground(new java.awt.Color(0, 0, 0));
+        backbtn.setForeground(new java.awt.Color(255, 255, 255));
         backbtn.setText("Back");
         backbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backbtnActionPerformed(evt);
             }
         });
-        getContentPane().add(backbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, -1, -1));
+        getContentPane().add(backbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
 
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Password    : ");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, -1, -1));
 
-        registerbtn.setBackground(new java.awt.Color(51, 255, 0));
+        registerbtn.setBackground(new java.awt.Color(255, 255, 255));
         registerbtn.setText("Register");
+        registerbtn.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                registerbtnMouseMoved(evt);
+            }
+        });
+        registerbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                registerbtnMousePressed(evt);
+            }
+        });
         registerbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registerbtnActionPerformed(evt);
             }
         });
-        getContentPane().add(registerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 90, 30));
-        getContentPane().add(cfpwdfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 190, 30));
+        getContentPane().add(registerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 90, 30));
+        getContentPane().add(cfpwdfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 190, 30));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon("D:\\Netbean\\OXProjects\\src\\Image\\bg.png")); // NOI18N
+        jLabel7.setMinimumSize(new java.awt.Dimension(605, 428));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -134,6 +161,8 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_nicknamefieldActionPerformed
 
     private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
+        Login log = new Login();
+        log.setVisible(true);
         dispose();
 
     }//GEN-LAST:event_backbtnActionPerformed
@@ -142,11 +171,12 @@ public class Register extends javax.swing.JFrame {
         RegisterDB regis = new RegisterDB();
         if(checkFieldnotnull() == false){
             if(regis.checkUserExists(usernamefield.getText())){
-                JOptionPane.showMessageDialog(null, "Username นี้มีผู้ใช้แล้วกรุณากรอกใหม่","Register Error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Username is exists please fill again","Register Error",JOptionPane.ERROR_MESSAGE);
                 usernamefield.setText("");
             }
             if(nicknamefield.getText().length()<3||checkpwdandcfpwd()==false){
-                JOptionPane.showMessageDialog(null, "กรุณาตั้ง Nicknameอย่างน้อย3ตัวอักษรและ กรุณาตรวจสอบPassword ให้ตรงกันและใส่อย่างน้อย6ตัว!","Register Error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please set Nickname morethan 3 charactor "
+                        + "and check Password is correct andd fill morethan 6 number!","Register Error",JOptionPane.ERROR_MESSAGE);
                 nicknamefield.setText("");
                 cfpwdfield.setText("");
             }
@@ -163,10 +193,18 @@ public class Register extends javax.swing.JFrame {
             }
         }
         else{
-            JOptionPane.showMessageDialog(null, "กรุณากรอก ข้อมูลให้ครบทุกช่อง");
+            JOptionPane.showMessageDialog(null, "Please fill all of information");
         }
 
     }//GEN-LAST:event_registerbtnActionPerformed
+
+    private void registerbtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerbtnMouseMoved
+        
+    }//GEN-LAST:event_registerbtnMouseMoved
+
+    private void registerbtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerbtnMousePressed
+        
+    }//GEN-LAST:event_registerbtnMousePressed
     boolean checkFieldnotnull(){
         boolean flag = false;
         if(usernamefield.getText().equals("")|| pwdfield.getPassword().equals("")
@@ -235,6 +273,7 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField nicknamefield;
     private javax.swing.JPasswordField pwdfield;
     private javax.swing.JButton registerbtn;

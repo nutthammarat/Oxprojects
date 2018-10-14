@@ -4,16 +4,30 @@
  * and open the template in the editor.
  */
 
+
+
+import com.mongodb.*;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
+import com.mongodb.client.MongoDatabase;
+import javax.swing.JOptionPane;
+import org.bson.Document;
+
 /**
  *
- * @author nutth
+ * @author GGG
  */
 public class Login extends javax.swing.JFrame {
-
+    MongoClientURI uri = new MongoClientURI("mongodb://admin:password1@ds135866.mlab.com:35866/oxproject");
+    MongoClient client = new MongoClient(uri);
+    MongoDatabase db = client.getDatabase(uri.getDatabase());
+    BasicDBObject query = new BasicDBObject();
+    MongoCollection<Document> col = db.getCollection("users");
+    
     /**
-     * Creates new form Login
+     * Creates new form login
      */
-    public Login() {
+    public Login() {     
         initComponents();
     }
 
@@ -26,31 +40,121 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        usernamefield = new javax.swing.JTextField();
+        passwordfield = new javax.swing.JPasswordField();
+        loginbutton = new javax.swing.JButton();
+        registerbutton = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("                                                                                                      Oxgame");
-        setMinimumSize(new java.awt.Dimension(724, 452));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setTitle("                                                                               OXgame");
+        setMinimumSize(new java.awt.Dimension(605, 428));
+        setPreferredSize(new java.awt.Dimension(500, 400));
+        getContentPane().setLayout(null);
 
-        jButton1.setText("Register");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setBackground(new java.awt.Color(153, 153, 255));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setText("Login");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(260, 60, 90, 50);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setText("Username :");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(80, 130, 140, 40);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setText("Password  :");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(80, 200, 130, 29);
+
+        usernamefield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                usernamefieldActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 204, -1, -1));
+        getContentPane().add(usernamefield);
+        usernamefield.setBounds(230, 140, 240, 30);
+        getContentPane().add(passwordfield);
+        passwordfield.setBounds(230, 200, 240, 30);
+
+        loginbutton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        loginbutton.setText("Login");
+        loginbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginbuttonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(loginbutton);
+        loginbutton.setBounds(160, 280, 110, 40);
+
+        registerbutton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        registerbutton.setText("Register");
+        registerbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerbuttonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(registerbutton);
+        registerbutton.setBounds(310, 280, 110, 40);
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Created by : Sec3 Group 4");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(10, 360, 190, 14);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon("D:\\Netbean\\OXProjects\\src\\Image\\bg.png")); // NOI18N
+        jLabel5.setText("jLabel5");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(0, -30, 610, 490);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       Register regis = new Register();
-       regis.setVisible(true);
-       
-    }//GEN-LAST:event_jButton1ActionPerformed
-    
+    private void usernamefieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernamefieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernamefieldActionPerformed
+
+    private void loginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbuttonActionPerformed
+        // TODO add your handling code here:
+        if(usernamefield.getText().length()>3 && passwordfield.getText().length()>3){
+            if(checkUserExists(usernamefield.getText())==true){
+                if(checkPassCorrect(usernamefield.getText(),passwordfield.getText())==true){
+                    setVisible(false);
+                    JOptionPane.showMessageDialog(null, "Welcome "+usernamefield.getText());
+                    
+                }else{
+                    JOptionPane.showMessageDialog(null, "Password isn't valid plaese again");
+                    passwordfield.setText(null);
+                }
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Username isn't valid plaese again");
+                usernamefield.setText(null);
+                passwordfield.setText(null);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Username or Password is short! pls try again");
+            usernamefield.setText(null);
+            passwordfield.setText(null);
+        }
+        
+    }//GEN-LAST:event_loginbuttonActionPerformed
+
+    private void registerbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerbuttonActionPerformed
+        Register regis = new Register();
+        regis.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_registerbuttonActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -74,6 +178,9 @@ public class Login extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -82,8 +189,34 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
+    
+    public boolean checkUserExists(String username){
+        Document findQuery = new Document("user",username);
+        MongoCursor<Document> cursor = col.find(findQuery).iterator();
+        if(cursor.hasNext())
+            return true;
+        else
+            return false;
+    }
+
+    public boolean checkPassCorrect(String username,String password){
+        Document findUserPass = new Document("user",username).append("pass",password);
+        MongoCursor<Document> cursor = col.find(findUserPass).iterator();
+        if(cursor.hasNext())
+            return true;
+        else
+            return false;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JButton loginbutton;
+    private javax.swing.JPasswordField passwordfield;
+    private javax.swing.JButton registerbutton;
+    private javax.swing.JTextField usernamefield;
     // End of variables declaration//GEN-END:variables
 }
