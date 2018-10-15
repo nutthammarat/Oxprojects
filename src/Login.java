@@ -57,20 +57,20 @@ public class Login extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jLabel1.setBackground(new java.awt.Color(153, 153, 255));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setText("Login");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel1.setText("L O G I N");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(260, 60, 90, 50);
+        jLabel1.setBounds(190, 40, 280, 60);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("Username :");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(80, 130, 140, 40);
+        jLabel2.setBounds(90, 130, 160, 40);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setText("Password  :");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(80, 200, 130, 29);
+        jLabel3.setBounds(90, 200, 150, 29);
 
         usernamefield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,9 +78,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(usernamefield);
-        usernamefield.setBounds(230, 140, 240, 30);
+        usernamefield.setBounds(260, 140, 240, 30);
         getContentPane().add(passwordfield);
-        passwordfield.setBounds(230, 200, 240, 30);
+        passwordfield.setBounds(260, 200, 240, 30);
 
         loginbutton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         loginbutton.setText("Login");
@@ -127,6 +127,8 @@ public class Login extends javax.swing.JFrame {
                 if(checkPassCorrect(usernamefield.getText(),passwordfield.getText())==true){
                     setVisible(false);
                     JOptionPane.showMessageDialog(null, "Welcome "+usernamefield.getText());
+                    Lobby lobby = new Lobby();
+                    lobby.setVisible(true);
                     
                 }else{
                     JOptionPane.showMessageDialog(null, "Password isn't valid plaese again");
@@ -207,6 +209,7 @@ public class Login extends javax.swing.JFrame {
         else
             return false;
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
