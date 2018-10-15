@@ -13,7 +13,7 @@ public class LobbyDB {
     MongoCollection<Document> col = db.getCollection("rooms");
 
     public void createRoom(String name) {
-        col.insertOne(new Document("name",name).append("unit",1));
+        col.insertOne(new Document("name",name).append("units",(int)1));
     }
 
     public List<Document> showRoom(){
@@ -27,7 +27,7 @@ public class LobbyDB {
     }
 
     public boolean joinRoom(String name){
-        Document findRoom = new Document("_id",new ObjectId(name));
+        Document findRoom = new Document("name",new String(name));
         MongoCursor<Document> cursor = col.find(findRoom).iterator();
         if(cursor.hasNext()) {
             Document room = cursor.next();
