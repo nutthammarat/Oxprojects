@@ -26,20 +26,42 @@ public class registerTest {
     public void tearDown() {
     }
     @Test
-    public void checkpwdandcfpwd(){
+    public void checkpwdandcfpwdTrue(){
         Register regis = new Register();
         regis.pwdfield.setText("123456");
         regis.cfpwdfield.setText("123456");
-        if(regis.checkpwdandcfpwd()==true)
-            System.out.println("Password correct");
-        else
-            System.out.println("Password isn't valid");
+        assertTrue(regis.checkpwdandcfpwd());
     }
     @Test
-    public void getnickname(){
+    public void checkpwdandcfpwdFalse(){
+        Register regis = new Register();
+        regis.pwdfield.setText("1234567");
+        regis.cfpwdfield.setText("123456");
+        assertFalse(regis.checkpwdandcfpwd());
+    }
+    @Test
+    public void getnickname(){//output ตรงตาม input
         Register regis = new Register();
         regis.nicknamefield.setText("Nutty");
-        System.out.println(regis.getnickname());
+        assertEquals("Nutty", regis.getnickname());
+    }
+    @Test
+    public void checkFieldnotnullFalse(){//เติมครบทุกช่อง
+        Register regis = new Register();
+        regis.usernamefield.setText("Nutty");
+        regis.pwdfield.setText("123456");
+        regis.cfpwdfield.setText("123456");
+        regis.nicknamefield.setText("Nutty");
+        assertFalse(regis.checkFieldnotnull());
+    }
+    @Test
+    public void checkFieldnotnullTrue(){//มีช่องที่ยังไม่ได้เติม
+        Register regis = new Register();
+        regis.usernamefield.setText("");
+        regis.pwdfield.setText("123456");
+        regis.cfpwdfield.setText("123456");
+        regis.nicknamefield.setText("Nutty");
+        assertTrue(regis.checkFieldnotnull());
     }
 
     

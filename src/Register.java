@@ -170,12 +170,12 @@ public class Register extends javax.swing.JFrame {
         RegisterDB regis = new RegisterDB();
         if(checkFieldnotnull() == false){
             if(regis.checkUserExists(usernamefield.getText())){
-                JOptionPane.showMessageDialog(null, "Username is exists please fill again","Register Error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Username is exists or to short please fill again","Register Error",JOptionPane.ERROR_MESSAGE);
                 usernamefield.setText("");
             }
             if(nicknamefield.getText().length()<3||checkpwdandcfpwd()==false){
-                JOptionPane.showMessageDialog(null, "Please set Nickname morethan 3 charactor "
-                        + "and check Password is correct andd fill morethan 6 number!","Register Error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please set Nickname more than 3 charactor "
+                        + "and check Password and comfirm Password to more than 6 number!","Register Error",JOptionPane.ERROR_MESSAGE);
                 nicknamefield.setText("");
                 cfpwdfield.setText("");
             }
@@ -209,9 +209,9 @@ public class Register extends javax.swing.JFrame {
         if(usernamefield.getText().equals("")|| pwdfield.getPassword().equals("")
            || nicknamefield.getText().equals("")||cfpwdfield.getPassword().equals("")){
             flag = true;
-            return flag;
+            return flag;//true
         } else
-        return flag;
+        return flag;//false
     }
     
     boolean checkpwdandcfpwd(){

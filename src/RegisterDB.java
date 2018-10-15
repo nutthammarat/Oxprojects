@@ -20,6 +20,8 @@ public class RegisterDB {
         MongoCursor<Document> cursor = col.find(findQuery).iterator();
             if(cursor.hasNext())
                 return true;
+            if(username.length()<3)
+                return true;
             else
                 return false;
     }
