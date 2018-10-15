@@ -18,12 +18,8 @@ import org.bson.Document;
  * @author GGG
  */
 public class Login extends javax.swing.JFrame {
-    MongoClientURI uri = new MongoClientURI("mongodb://admin:password1@ds135866.mlab.com:35866/oxproject");
-    MongoClient client = new MongoClient(uri);
-    MongoDatabase db = client.getDatabase(uri.getDatabase());
-    BasicDBObject query = new BasicDBObject();
-    MongoCollection<Document> col = db.getCollection("users");
     
+    LoginDB logindb = new LoginDB();
     /**
      * Creates new form login
      */
@@ -123,8 +119,8 @@ public class Login extends javax.swing.JFrame {
     private void loginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbuttonActionPerformed
         // TODO add your handling code here:
         if(usernamefield.getText().length()>3 && passwordfield.getText().length()>3){
-            if(checkUserExists(usernamefield.getText())==true){
-                if(checkPassCorrect(usernamefield.getText(),passwordfield.getText())==true){
+            if(logindb.checkUserExisth(usernamefield.getText())==true){
+                if(logindb.checkPassCorrect(usernamefield.getText(),passwordfield.getText())==true){
                     
                     LoginDB db = new LoginDB();
                     String nickname = db.getNickname(usernamefield.getText());
@@ -195,23 +191,7 @@ public class Login extends javax.swing.JFrame {
         });
     }
     
-    public boolean checkUserExists(String username){
-        Document findQuery = new Document("user",username);
-        MongoCursor<Document> cursor = col.find(findQuery).iterator();
-        if(cursor.hasNext())
-            return true;
-        else
-            return false;
-    }
-
-    public boolean checkPassCorrect(String username,String password){
-        Document findUserPass = new Document("user",username).append("pass",password);
-        MongoCursor<Document> cursor = col.find(findUserPass).iterator();
-        if(cursor.hasNext())
-            return true;
-        else
-            return false;
-    }
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -221,8 +201,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JButton loginbutton;
-    private javax.swing.JPasswordField passwordfield;
+    public javax.swing.JPasswordField passwordfield;
     private javax.swing.JButton registerbutton;
-    private javax.swing.JTextField usernamefield;
+    public javax.swing.JTextField usernamefield;
     // End of variables declaration//GEN-END:variables
 }

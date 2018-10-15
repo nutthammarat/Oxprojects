@@ -13,7 +13,7 @@ import org.bson.Document;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 public class Register extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Register
      */
@@ -215,10 +215,9 @@ public class Register extends javax.swing.JFrame {
     }
     
     boolean checkpwdandcfpwd(){
-        if(pwdfield.getText().equals(cfpwdfield.getText()))
+        if(pwdfield.getText().equals(cfpwdfield.getText())&&pwdfield.getText().length()>=6)
             return true;
-        if(pwdfield.getText().length()>=6)
-            return true;
+        
         return false;
     }
     public String tostring(){
@@ -265,7 +264,7 @@ public class Register extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backbtn;
-    private javax.swing.JPasswordField cfpwdfield;
+    public javax.swing.JPasswordField cfpwdfield;
     private javax.swing.JButton clearbtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -273,9 +272,9 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField nicknamefield;
-    private javax.swing.JPasswordField pwdfield;
+    public javax.swing.JTextField nicknamefield;
+    public javax.swing.JPasswordField pwdfield;
     private javax.swing.JButton registerbtn;
-    private javax.swing.JTextField usernamefield;
+    public javax.swing.JTextField usernamefield;
     // End of variables declaration//GEN-END:variables
 }
