@@ -125,10 +125,13 @@ public class Login extends javax.swing.JFrame {
         if(usernamefield.getText().length()>3 && passwordfield.getText().length()>3){
             if(checkUserExists(usernamefield.getText())==true){
                 if(checkPassCorrect(usernamefield.getText(),passwordfield.getText())==true){
-                    setVisible(false);
-                    JOptionPane.showMessageDialog(null, "Welcome "+usernamefield.getText());
+                    
+                    LoginDB db = new LoginDB();
+                    String nickname = db.getNickname(usernamefield.getText());
+                    JOptionPane.showMessageDialog(null, "Welcome "+nickname);
                     Lobby lobby = new Lobby();
                     lobby.setVisible(true);
+                    setVisible(false);
                     
                 }else{
                     JOptionPane.showMessageDialog(null, "Password isn't valid plaese again");

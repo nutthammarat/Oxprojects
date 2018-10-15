@@ -4,6 +4,7 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import org.bson.*;
 import org.bson.types.ObjectId;
+import java.util.*;
 
 public class LobbyDB {
     MongoClientURI uri = new MongoClientURI("mongodb://admin:password1@ds135866.mlab.com:35866/oxproject");
@@ -15,12 +16,14 @@ public class LobbyDB {
         col.insertOne(new Document("name",name).append("unit",1));
     }
 
-    public void showRoom(){
+    public List<Document> showRoom(){
+        List<Document> list = new ArrayList<>();
         MongoCursor<Document> cursor = col.find().iterator();
         while(cursor.hasNext()){
             Document rooms = cursor.next();
-            System.out.println("Room name: " + rooms.get("name")+", Units: "+rooms.get("units"));
+            list.add(rooms);
         }
+        return list;
     }
 
     public boolean joinRoom(String name){
@@ -37,4 +40,6 @@ public class LobbyDB {
         }
         return false;
     }
+   
+    
 }

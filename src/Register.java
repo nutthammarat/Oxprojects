@@ -65,7 +65,7 @@ public class Register extends javax.swing.JFrame {
         });
         getContentPane().add(usernamefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 190, 30));
 
-        clearbtn.setBackground(new java.awt.Color(255, 255, 255));
+        clearbtn.setBackground(new java.awt.Color(204, 204, 204));
         clearbtn.setText("Clear");
         clearbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,7 +117,7 @@ public class Register extends javax.swing.JFrame {
         jLabel4.setText("Password    : ");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, -1, -1));
 
-        registerbtn.setBackground(new java.awt.Color(255, 255, 255));
+        registerbtn.setBackground(new java.awt.Color(204, 204, 204));
         registerbtn.setText("Register");
         registerbtn.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
