@@ -30,20 +30,20 @@ public class registerTest {
         Register regis = new Register();
         regis.pwdfield.setText("123456");
         regis.cfpwdfield.setText("123456");
-        assertTrue(regis.checkpwdandcfpwd());
+        assertTrue(Registerservice.checkPass(regis.pwdfield.getText(),regis.cfpwdfield.getText()));
     }
     @Test
     public void checkpwdandcfpwdFalse(){
         Register regis = new Register();
         regis.pwdfield.setText("1234567");
         regis.cfpwdfield.setText("123456");
-        assertFalse(regis.checkpwdandcfpwd());
+        assertFalse(Registerservice.checkPass(regis.pwdfield.getText(),regis.cfpwdfield.getText()));
     }
     @Test
     public void getnickname(){//output ตรงตาม input
         Register regis = new Register();
         regis.nicknamefield.setText("Nutty");
-        assertEquals("Nutty", regis.getnickname());
+        assertEquals("Nutty", Registerservice.getnickname(regis.nicknamefield.getText()));
     }
     @Test
     public void checkFieldnotnullFalse(){//เติมครบทุกช่อง
@@ -52,7 +52,7 @@ public class registerTest {
         regis.pwdfield.setText("123456");
         regis.cfpwdfield.setText("123456");
         regis.nicknamefield.setText("Nutty");
-        assertFalse(regis.checkFieldnotnull());
+        assertFalse(Registerservice.checkFieldnotnull(regis.usernamefield.getText(),regis.pwdfield.getText(),regis.cfpwdfield.getText(),regis.nicknamefield.getText()));
     }
     @Test
     public void checkFieldnotnullTrue(){//มีช่องที่ยังไม่ได้เติม
@@ -61,7 +61,7 @@ public class registerTest {
         regis.pwdfield.setText("123456");
         regis.cfpwdfield.setText("123456");
         regis.nicknamefield.setText("Nutty");
-        assertTrue(regis.checkFieldnotnull());
+        assertTrue(Registerservice.checkFieldnotnull(regis.usernamefield.getText(),regis.pwdfield.getText(),regis.cfpwdfield.getText(),regis.nicknamefield.getText()));
     }
 
     

@@ -6,12 +6,8 @@
 
 
 
-import com.mongodb.*;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
+
 import javax.swing.JOptionPane;
-import org.bson.Document;
 
 /**
  *
@@ -19,12 +15,14 @@ import org.bson.Document;
  */
 public class Login extends javax.swing.JFrame {
     
-    LoginDB logindb = new LoginDB();
+    
     /**
      * Creates new form login
      */
     public Login() {     
         initComponents();
+        usernamefield.setText("admin");
+        passwordfield.setText("123456");
     }
 
     /**
@@ -118,15 +116,12 @@ public class Login extends javax.swing.JFrame {
 
     private void loginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbuttonActionPerformed
         // TODO add your handling code here:
-        if(usernamefield.getText().length()>3 && passwordfield.getText().length()>3){
-            if(logindb.checkUserExisth(usernamefield.getText())==true){
-                if(logindb.checkPassCorrect(usernamefield.getText(),passwordfield.getText())==true){
-                    
-                    LoginDB db = new LoginDB();
-                    String nickname = db.getNickname(usernamefield.getText());
-                    JOptionPane.showMessageDialog(null, "Welcome "+nickname);
-                    Lobby lobby = new Lobby();
-                    lobby.setVisible(true);
+        if(Loginservice.checkUserandPasslegnth(usernamefield.getText(),passwordfield.getText())){
+            if(Loginservice.checkUserexists(usernamefield.getText())){
+                if(Loginservice.checkPasscorrect(usernamefield.getText(),passwordfield.getText())){
+                    Loginservice.gotoLobby(usernamefield.getText());
+                    ProfileDB.getNickname(usernamefield.getText());
+                    Lobby.testfield.setText(usernamefield.getText());
                     setVisible(false);
                     
                 }else{

@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,6 +18,8 @@ public class Profile extends javax.swing.JFrame {
      */
     public Profile() {
         initComponents();
+        nicknamefield.setText(ProfileDB.getNickname(Lobbyservice.getuUser()));
+       // winscore.setText(ProfileDB.getScoreWin(""));
     }
 
     /**
@@ -26,42 +31,140 @@ public class Profile extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        backbtn = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        nicknamefield = new javax.swing.JTextField();
+        changeNicknamebtn = new javax.swing.JButton();
+        drawscore = new javax.swing.JTextField();
+        losescore = new javax.swing.JTextField();
+        winscore = new javax.swing.JTextField();
+        totalgame = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Oxgame");
+        setMaximumSize(new java.awt.Dimension(592, 300));
+        setMinimumSize(new java.awt.Dimension(592, 300));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("coming soon Profile");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 16, -1, 22));
+        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\Netbean\\OXProjects\\src\\Image\\picture.png")); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setText("Back");
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText(" P r of i l e");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, 22));
+
+        backbtn.setBackground(new java.awt.Color(0, 153, 153));
+        backbtn.setText("Back");
+        backbtn.setBorder(null);
+        backbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                backbtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 90, 40));
+        getContentPane().add(backbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, 60, 30));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("Nickname : ");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("W/ ");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setText("D/");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setText("L");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, -1, -1));
+
+        nicknamefield.setEditable(false);
+        getContentPane().add(nicknamefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 110, 30));
+
+        changeNicknamebtn.setText("ChangeNickname");
+        changeNicknamebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeNicknamebtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(changeNicknamebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, -1));
+
+        drawscore.setEditable(false);
+        drawscore.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        drawscore.setText("0");
+        drawscore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                drawscoreActionPerformed(evt);
+            }
+        });
+        getContentPane().add(drawscore, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 20, -1));
+
+        losescore.setEditable(false);
+        losescore.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        losescore.setText("0");
+        losescore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                losescoreActionPerformed(evt);
+            }
+        });
+        getContentPane().add(losescore, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 20, -1));
+
+        winscore.setEditable(false);
+        winscore.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        winscore.setText("0");
+        winscore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                winscoreActionPerformed(evt);
+            }
+        });
+        getContentPane().add(winscore, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 20, -1));
+
+        totalgame.setEditable(false);
+        getContentPane().add(totalgame, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 20, -1));
+
+        jLabel8.setText("Total : ");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon("D:\\Netbean\\OXProjects\\src\\Image\\bg.png")); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+        jLabel2.setMinimumSize(new java.awt.Dimension(590, 300));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 300));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
         // TODO add your handling code here:
-        Lobby lb = new Lobby();
-        lb.show();
+        new Lobby().setVisible(true);
         
         this.hide();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_backbtnActionPerformed
+
+    private void changeNicknamebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeNicknamebtnActionPerformed
+        String code = JOptionPane.showInputDialog( null, "Enter new Nickname ","New Nickname",JOptionPane.WARNING_MESSAGE);
+       ProfileDB.setNickName(Lobbyservice.getuUser(), code);
+       nicknamefield.setText(code);
+    }//GEN-LAST:event_changeNicknamebtnActionPerformed
+
+    private void winscoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_winscoreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_winscoreActionPerformed
+
+    private void losescoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_losescoreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_losescoreActionPerformed
+
+    private void drawscoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drawscoreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_drawscoreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -99,8 +202,20 @@ public class Profile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton backbtn;
+    private javax.swing.JButton changeNicknamebtn;
+    private javax.swing.JTextField drawscore;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JTextField losescore;
+    private javax.swing.JTextField nicknamefield;
+    private javax.swing.JTextField totalgame;
+    private javax.swing.JTextField winscore;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,25 +1,13 @@
-import com.mongodb.BasicDBObject;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import org.bson.Document;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
+
+
+import javax.swing.*;
+
 public class Register extends javax.swing.JFrame {
     
     /**
      * Creates new form Register
      */
     Object[] options = {"Login"};
-    JFrame frames = new JFrame("src/Image/metal-info.png");
-    
     public Register() {
         initComponents();
         usernamefield.setText("");
@@ -167,21 +155,22 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_backbtnActionPerformed
 
     private void registerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerbtnActionPerformed
-        RegisterDB regis = new RegisterDB();
-        if(checkFieldnotnull() == false){
-            if(regis.checkUserExists(usernamefield.getText())){
+       
+        if(!Registerservice.checkFieldnotnull(usernamefield.getText(), pwdfield.getPassword().toString(), nicknamefield.getText(),cfpwdfield.getPassword().toString())){
+            if(Registerservice.checkUserExist(usernamefield.getText())){
                 JOptionPane.showMessageDialog(null, "Username is exists or to short please fill again","Register Error",JOptionPane.ERROR_MESSAGE);
                 usernamefield.setText("");
             }
-            if(nicknamefield.getText().length()<3||checkpwdandcfpwd()==false){
+            if(Registerservice.checkNickname(nicknamefield.getText())||Registerservice.checkPass(pwdfield.getPassword().toString(), cfpwdfield.getPassword().toString())){
                 JOptionPane.showMessageDialog(null, "Please set Nickname more than 3 charactor "
                         + "and check Password and comfirm Password to more than 6 number!","Register Error",JOptionPane.ERROR_MESSAGE);
                 nicknamefield.setText("");
                 cfpwdfield.setText("");
             }
-            else if(!regis.checkUserExists(usernamefield.getText())){
-                regis.addUser(usernamefield.getText(), pwdfield.getText(), nicknamefield.getText());
-                int input = JOptionPane.showOptionDialog(frames, "Welcome, " + getnickname(),"Register Success",
+            else if(!Registerservice.checkUserExist(usernamefield.getText())){
+                
+                Registerservice.addUsers(usernamefield.getText(), pwdfield.getText(), nicknamefield.getText());
+                int input = JOptionPane.showOptionDialog(null, "Welcome, " + Registerservice.getnickname(nicknamefield.getText()),"Register Success",
                             JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
                 if(input == 0){
                     Login log = new Login();
@@ -204,29 +193,6 @@ public class Register extends javax.swing.JFrame {
     private void registerbtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerbtnMousePressed
         
     }//GEN-LAST:event_registerbtnMousePressed
-    boolean checkFieldnotnull(){
-        boolean flag = false;
-        if(usernamefield.getText().equals("")|| pwdfield.getPassword().equals("")
-           || nicknamefield.getText().equals("")||cfpwdfield.getPassword().equals("")){
-            flag = true;
-            return flag;//true
-        } else
-        return flag;//false
-    }
-    
-    boolean checkpwdandcfpwd(){
-        if(pwdfield.getText().equals(cfpwdfield.getText())&&pwdfield.getText().length()>=6)
-            return true;
-        
-        return false;
-    }
-    public String tostring(){
-        return pwdfield.getText();
-    } 
-    String getnickname(){
-        String a = nicknamefield.getText();
-        return a;
-    }
     void visible(){
         dispose();
     }

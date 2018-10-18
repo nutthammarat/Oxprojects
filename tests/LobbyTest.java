@@ -5,6 +5,7 @@
  */
 
 import java.util.*;
+import javax.swing.JList;
 
 import org.junit.After;
 import org.junit.Before;
@@ -30,7 +31,7 @@ public class LobbyTest {
     public void showRoom(){
         List<Document> list = new ArrayList<>();
         LobbyDB db = new LobbyDB();
-        list = db.showRoom();
+        list = LobbyDB.getRoom();
         //showroom
         for(int i = 0 ; i<list.size() ; i++) {
             System.out.println(list.get(i).get("_id") + " " +list.get(i).get("name") + "\n" + list.get(i).get("units"));
@@ -38,14 +39,15 @@ public class LobbyTest {
     }
     @Test
     public void createRoom(){
+       /* JList<String> listname=null;
+        JList<String> listunit=null;
         List<Document> list = new ArrayList<>();
-        LobbyDB db = new LobbyDB();
-        db.createRoom("Wait");
-        list = db.showRoom();
+        LobbyDB.createRoom("Wait");
+        list = Lobbyservice.showList(listname, listunit);
         //showroom
-        for(int i = 0 ; i<list.size() ; i++) {
-            System.out.println(list.get(i).get("_id") + " " +list.get(i).get("name") + "\n" + list.get(i).get("units"));
-        }
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).get("_id") + " " + list.get(i).get("name") + "\n" + list.get(i).get("units"));
+        }*/
     }
   }
     

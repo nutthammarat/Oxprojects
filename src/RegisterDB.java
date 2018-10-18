@@ -9,26 +9,25 @@ import org.bson.Document;
 
 
 public class RegisterDB {
-    MongoClientURI uri = new MongoClientURI("mongodb://admin:password1@ds135866.mlab.com:35866/oxproject");
-    MongoClient client = new MongoClient(uri);
-    MongoDatabase db = client.getDatabase(uri.getDatabase());
-    BasicDBObject query = new BasicDBObject();
-    MongoCollection<Document> col = db.getCollection("users");
+    static MongoClientURI uri = new MongoClientURI("mongodb://admin:password1@ds135866.mlab.com:35866/oxproject");
+    static MongoClient client = new MongoClient(uri);
+    static MongoDatabase db = client.getDatabase(uri.getDatabase());
+    static BasicDBObject query = new BasicDBObject();
+    static MongoCollection<Document> col = db.getCollection("users");
 
-    public boolean checkUserExists(String username){
+    public static boolean checkUserExists(String username){
         Document findQuery = new Document("user",username);
         MongoCursor<Document> cursor = col.find(findQuery).iterator();
-            if(cursor.hasNext())
+            if(cursor.hasNext()||username.length()<3)
                 return true;
-            if(username.length()<3)
-                return true;
+           
             else
                 return false;
     }
 
-    public void addUser(String username,String password,String nickname){
+    public static void addUser(String username,String password,String nickname){
         col.insertOne(new Document("user",username).append("pass",password).append("nickname",nickname)
-                .append("scoreWin",0).append("scoreLose",0).append("scoreDraw",0));
+                .append("scoreWin",0).append("scoreLose",0).append("scoreDraw",0).append("status", "off"));
     }
 
     

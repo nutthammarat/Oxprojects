@@ -19,15 +19,13 @@ public class LoginTest {
     public void checkUserExisthTrue(){
             Login login = new Login();
             login.usernamefield.setText("Nutty123");
-            login.passwordfield.setText("123456");
-            assertTrue(login.logindb.checkUserExisth(login.usernamefield.getText()));
+            assertTrue(Loginservice.checkUserexists(login.usernamefield.getText()));
             
     }
     public void checkUserExisthFalse(){
             Login login = new Login();
             login.usernamefield.setText("Nutty1234");
-            login.passwordfield.setText("123456");
-            assertFalse(login.logindb.checkUserExisth(login.usernamefield.getText()));
+            assertFalse(Loginservice.checkUserexists(login.usernamefield.getText()));
             
     }
     

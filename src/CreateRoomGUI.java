@@ -1,3 +1,6 @@
+
+import java.awt.event.ItemEvent;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,12 +11,12 @@
  *
  * @author Jirawan
  */
-public class CreateRoom extends javax.swing.JFrame {
+public class CreateRoomGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form CreateRoom
      */
-    public CreateRoom() {
+    public CreateRoomGUI() {
         initComponents();
     }
 
@@ -28,12 +31,16 @@ public class CreateRoom extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        rounds = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        okbtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        nameroom = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Oxgame");
-        setMaximumSize(new java.awt.Dimension(429, 399));
         setMinimumSize(new java.awt.Dimension(429, 399));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -41,19 +48,39 @@ public class CreateRoom extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 43, 400, -1));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("coming soon CreateRoom");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, 22));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("CreateRoom");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, 22));
+
+        rounds.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3", "5", "7" }));
+        getContentPane().add(rounds, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setText("Back");
+        jButton1.setText("Cancel");
         jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 180, 70));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 110, 30));
+
+        okbtn.setText("OK");
+        okbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okbtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(okbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 100, 30));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Name Room");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
+        getContentPane().add(nameroom, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 120, 40));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("Rounds");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon("D:\\Netbean\\OXProjects\\src\\Image\\bg.png")); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 400));
@@ -64,12 +91,23 @@ public class CreateRoom extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Lobby lb = new Lobby();
-        lb.show();
+      
 
         this.hide();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void okbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okbtnActionPerformed
+        int round = Integer.parseInt((String)rounds.getSelectedItem());
+        CreateRoomDB.createRoom(nameroom.getText(), round);
+        Lobbyservice.Lobbyshow();
+        dispose();
+
+//if(threeround.setSelected(true)){
+            
+       // }
+    }//GEN-LAST:event_okbtnActionPerformed
+
+     
     /**
      * @param args the command line arguments
      */
@@ -87,20 +125,21 @@ public class CreateRoom extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreateRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateRoomGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreateRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateRoomGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreateRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateRoomGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateRoomGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreateRoom().setVisible(true);
+                new CreateRoomGUI().setVisible(true);
             }
         });
     }
@@ -109,6 +148,11 @@ public class CreateRoom extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField nameroom;
+    private javax.swing.JButton okbtn;
+    private javax.swing.JComboBox<String> rounds;
     // End of variables declaration//GEN-END:variables
 }

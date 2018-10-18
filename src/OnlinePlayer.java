@@ -8,12 +8,12 @@
  *
  * @author Jirawan
  */
-public class Online extends javax.swing.JFrame {
+public class OnlinePlayer extends javax.swing.JFrame {
 
     /**
      * Creates new form Online
      */
-    public Online() {
+    public OnlinePlayer() {
         initComponents();
     }
 
@@ -57,8 +57,7 @@ public class Online extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Lobby lb = new Lobby();
-        lb.show();
+       
         
         this.hide();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -80,20 +79,21 @@ public class Online extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Online.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OnlinePlayer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Online.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OnlinePlayer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Online.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OnlinePlayer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Online.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OnlinePlayer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Online().setVisible(true);
+                new OnlinePlayer().setVisible(true);
             }
         });
     }

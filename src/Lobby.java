@@ -1,16 +1,6 @@
 
-import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
-import javax.swing.table.DefaultTableModel;
-import org.bson.Document;
-import org.bson.types.ObjectId;
 import java.util.*;
-import javax.swing.DefaultListModel;
+import javax.swing.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -29,9 +19,8 @@ public class Lobby extends javax.swing.JFrame {
      */
     public Lobby() {
         initComponents();
-        
         LobbyDB db1 = new LobbyDB();
-        showList();
+        Lobbyservice.showList(listname, listunit);
      }
 
     /**
@@ -51,14 +40,15 @@ public class Lobby extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        profilebtn = new javax.swing.JButton();
+        createroombtn = new javax.swing.JButton();
+        leaderboardbtn = new javax.swing.JButton();
+        onlineplayerbyn = new javax.swing.JButton();
+        backbtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        testfield = new javax.swing.JTextField();
 
         jLabel3.setIcon(new javax.swing.ImageIcon("D:\\Netbean\\OXProjects\\src\\Image\\bg.png")); // NOI18N
 
@@ -74,6 +64,8 @@ public class Lobby extends javax.swing.JFrame {
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 200, -1));
 
         listunit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        listunit.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listunit.setEnabled(false);
         jScrollPane3.setViewportView(listunit);
 
         getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 60, -1));
@@ -89,60 +81,60 @@ public class Lobby extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon("D:\\Netbean\\OXProjects\\src\\Image\\picture.png")); // NOI18N
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, 110, 130));
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("Profile");
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        profilebtn.setBackground(new java.awt.Color(0, 153, 153));
+        profilebtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        profilebtn.setText("Profile");
+        profilebtn.setBorder(null);
+        profilebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                profilebtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 182, 65, 30));
+        getContentPane().add(profilebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 182, 65, 30));
 
-        jButton2.setBackground(new java.awt.Color(0, 153, 153));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("CreateRoom");
-        jButton2.setBorder(null);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        createroombtn.setBackground(new java.awt.Color(0, 153, 153));
+        createroombtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        createroombtn.setText("CreateRoom");
+        createroombtn.setBorder(null);
+        createroombtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                createroombtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 220, 99, 29));
+        getContentPane().add(createroombtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 220, 99, 29));
 
-        jButton3.setBackground(new java.awt.Color(0, 153, 153));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setText("LeaderBoard");
-        jButton3.setBorder(null);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        leaderboardbtn.setBackground(new java.awt.Color(0, 153, 153));
+        leaderboardbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        leaderboardbtn.setText("LeaderBoard");
+        leaderboardbtn.setBorder(null);
+        leaderboardbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                leaderboardbtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, 160, 30));
+        getContentPane().add(leaderboardbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, 160, 30));
 
-        jButton4.setBackground(new java.awt.Color(0, 153, 153));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton4.setText("Online");
-        jButton4.setBorder(null);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        onlineplayerbyn.setBackground(new java.awt.Color(0, 153, 153));
+        onlineplayerbyn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        onlineplayerbyn.setText("Online");
+        onlineplayerbyn.setBorder(null);
+        onlineplayerbyn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                onlineplayerbynActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, 100, 26));
+        getContentPane().add(onlineplayerbyn, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, 100, 26));
 
-        jButton5.setBackground(new java.awt.Color(0, 0, 0));
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Back");
-        jButton5.setBorder(null);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        backbtn.setBackground(new java.awt.Color(0, 0, 0));
+        backbtn.setForeground(new java.awt.Color(255, 255, 255));
+        backbtn.setText("Back");
+        backbtn.setBorder(null);
+        backbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                backbtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 60, 30));
+        getContentPane().add(backbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 60, 30));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Created by Sec3 Gruop 4");
@@ -155,62 +147,54 @@ public class Lobby extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon("D:\\Netbean\\OXProjects\\src\\Image\\bg.png")); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
 
+        testfield.setEditable(false);
+        getContentPane().add(testfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 110, -1));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void showList(){
-        LobbyDB db = new LobbyDB();
-        DefaultListModel model1 = new DefaultListModel();
-        DefaultListModel model2 = new DefaultListModel();
-        List<Document> list = db.showRoom();
-        for(int i = 0 ; i<list.size() ; i++){
-            model1.addElement(list.get(i).get("name"));
-            model2.addElement("("+list.get(i).get("units")+"/2)");
-        }
-        listname.setModel(model1);
-        listunit.setModel(model2);
-    }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    
+    private void profilebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profilebtnActionPerformed
         Profile pf = new  Profile();
         pf.show();
         
         this.hide();
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_profilebtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void createroombtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createroombtnActionPerformed
         // TODO add your handling code here:
-        CreateRoom croom = new  CreateRoom();
+        CreateRoomGUI croom = new  CreateRoomGUI();
         croom.show();
         
-        this.hide();
-    }//GEN-LAST:event_jButton2ActionPerformed
+        
+    }//GEN-LAST:event_createroombtnActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void leaderboardbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaderboardbtnActionPerformed
         // TODO add your handling code here:
-        Leaderboard lboard = new  Leaderboard();
+        LeaderBoard lboard = new  LeaderBoard();
         lboard.show();
         
-        this.hide();
+        
        
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_leaderboardbtnActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void onlineplayerbynActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onlineplayerbynActionPerformed
         // TODO add your handling code here:
-        Online onl= new  Online();
+        OnlinePlayer onl= new  OnlinePlayer();
         onl.show();
         
-        this.hide();
-    }//GEN-LAST:event_jButton4ActionPerformed
+        
+    }//GEN-LAST:event_onlineplayerbynActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
         Login login = new Login();
         dispose();
         login.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_backbtnActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
@@ -249,11 +233,8 @@ public class Lobby extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton backbtn;
+    private javax.swing.JButton createroombtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -263,7 +244,11 @@ public class Lobby extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JList<String> listname;
-    private javax.swing.JList<String> listunit;
+    private javax.swing.JButton leaderboardbtn;
+    private static javax.swing.JList<String> listname;
+    public static javax.swing.JList<String> listunit;
+    private javax.swing.JButton onlineplayerbyn;
+    private javax.swing.JButton profilebtn;
+    public static javax.swing.JTextField testfield;
     // End of variables declaration//GEN-END:variables
 }
